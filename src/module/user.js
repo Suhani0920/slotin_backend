@@ -1,5 +1,5 @@
 //write schema here
-import mongoose from"mongoose";
+import mongoose ,{Schema}from"mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
@@ -30,6 +30,10 @@ email:{
   required : true,
   trim:true,
 },
+appointments: {
+    type:Schema.Types.ObjectId , 
+   ref: "Appointment"
+ },
 refreshToken:{
   type:String
 }
@@ -80,6 +84,6 @@ userSchema.methods.generateRefreshToken = function(){
   )
 }
 
-const users = mongoose.model("users",userSchema);
+const User = mongoose.model("User",userSchema);
 
-export default users;
+export default User;
